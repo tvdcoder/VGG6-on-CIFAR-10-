@@ -1,0 +1,18 @@
+{
+  "data_dir": "./data",
+  "out_dir": "./runs/baseline",
+  "epochs": 60,
+  "batch_size": 128,
+  "lr": 0.1,
+  "optimizer": "sgd",
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "label_smoothing": 0.0,
+  "amp": true,
+  "seed": 42,
+  "num_workers": 4,
+  "aug_hflip": true,
+  "aug_crop": true,
+  "aug_cutout": true,
+  "aug_jitter": true
+}

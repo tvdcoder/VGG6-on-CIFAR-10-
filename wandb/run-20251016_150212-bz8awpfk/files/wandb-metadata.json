@@ -1,0 +1,55 @@
+{
+  "os":  "macOS-26.0.1-arm64-arm-64bit-Mach-O",
+  "python":  "CPython 3.13.7",
+  "startedAt":  "2025-10-16T09:32:12.495257Z",
+  "args":  [
+    "--data_dir",
+    "./data",
+    "--out_dir",
+    "./runs/final_best",
+    "--activation",
+    "relu",
+    "--optimizer",
+    "sgd",
+    "--lr",
+    "0.2",
+    "--batch_size",
+    "256",
+    "--epochs",
+    "40",
+    "--aug_hflip",
+    "--aug_crop",
+    "--aug_cutout",
+    "--aug_jitter",
+    "--amp",
+    "--wandb",
+    "--seed",
+    "42"
+  ],
+  "program":  "-m vgg6_cifar.scripts.train_experiment",
+  "email":  "tanaysunnam2017@gmail.com",
+  "root":  "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle",
+  "host":  "MacBook-Pro.local",
+  "executable":  "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/bin/python",
+  "cpu_count":  12,
+  "cpu_count_logical":  12,
+  "disk":  {
+    "/":  {
+      "total":  "494384795648",
+      "used":  "208056516608"
+    }
+  },
+  "memory":  {
+    "total":  "25769803776"
+  },
+  "apple":  {
+    "name":  "Apple M4 Pro",
+    "ecpuCores":  4,
+    "pcpuCores":  8,
+    "gpuCores":  16,
+    "memoryGb":  24,
+    "swapTotalBytes":  "3221225472",
+    "ramTotalBytes":  "25769803776"
+  },
+  "writerId":  "rgz7s7i9mpwa2bxh2b3n00cmz43v74rb"
+}
