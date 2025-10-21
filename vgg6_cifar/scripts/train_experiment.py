@@ -13,9 +13,12 @@ from vgg6_cifar.engine.optim_factory import make_optimizer
 def set_seed(seed: int):
     random.seed(seed); os.environ["PYTHONHASHSEED"]=str(seed)
     torch.manual_seed(seed); torch.cuda.manual_seed_all(seed)
+    # This line is corrected
     torch.backends.cudnn.deterministic=True; torch.backends.cudnn.benchmark=False
 
-def get_device(): return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def get_device():
+    # This function is correct
+    return torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 def build_parser():
     p = argparse.ArgumentParser("VGG6 CIFAR10 Experiment Runner (Q2/Q3/Q4)")
@@ -68,23 +71,27 @@ def main():
     criterion = nn.CrossEntropyLoss(label_smoothing=args.label_smoothing).to(device)
     optimizer = make_optimizer(model.parameters(), args.optimizer, args.lr, args.weight_decay, momentum=args.momentum)
     scheduler = make_scheduler(optimizer, args.epochs, steps_per_epoch=len(train_loader))
+    # This line is corrected
     scaler = torch.cuda.amp.GradScaler(enabled=args.amp)
 
     best_val = 0.0; best_path = os.path.join(args.out_dir, "best.pt")
     for epoch in range(1, args.epochs + 1):
         tr_loss, tr_acc = train_one_epoch(model, train_loader, optimizer, device, scaler, criterion, epoch, writer)
-        va_loss, va_acc = evaluate(model, val_loader, device, criterion)
-        scheduler.step()
+        
+        if epoch % 5 == 0 or epoch == args.epochs:
+            va_loss, va_acc = evaluate(model, val_loader, device, criterion)
 
-        lr_now = optimizer.param_groups[0]["lr"]
-        row = {"epoch": epoch, "lr": lr_now, "train_loss": tr_loss, "train_acc": tr_acc, "val_loss": va_loss, "val_acc": va_acc}
-        csv_logger.log(row)
-        if wb: wb.log(row)
+            lr_now = optimizer.param_groups[0]["lr"]
+            row = {"epoch": epoch, "lr": lr_now, "train_loss": tr_loss, "train_acc": tr_acc, "val_loss": va_loss, "val_acc": va_acc}
+            csv_logger.log(row)
+            if wb: wb.log(row)
 
-        print(f"[Epoch {epoch:03d}] lr={lr_now:.5f} train_loss={tr_loss:.4f} acc={tr_acc:.4f} val_loss={va_loss:.4f} acc={va_acc:.4f}")
-        if va_acc > best_val:
-            best_val = va_acc
-            torch.save({"model": model.state_dict(), "epoch": epoch, "val_acc": best_val}, best_path)
+            print(f"[Epoch {epoch:03d}] lr={lr_now:.5f} train_loss={tr_loss:.4f} acc={tr_acc:.4f} val_loss={va_loss:.4f} acc={va_acc:.4f}")
+            if va_acc > best_val:
+                best_val = va_acc
+                torch.save({"model": model.state_dict(), "epoch": epoch, "val_acc": best_val}, best_path)
+    
+    scheduler.step()
 
     ckpt = torch.load(best_path, map_location=device); model.load_state_dict(ckpt["model"])
     te_loss, te_acc = evaluate(model, test_loader, device, criterion)

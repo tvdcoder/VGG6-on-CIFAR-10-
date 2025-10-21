@@ -1,0 +1,13 @@
+CIFAR-10 normalization: mean=(0.4914, 0.4822, 0.4465), std=(0.247, 0.2435, 0.2616)
+Augmentations used for TRAIN: RandomCrop(32, padding=4), RandomHorizontalFlip(p=0.5), ColorJitter(0.2/0.2/0.2/0.02), RandomErasingSquare(~2%)
+VAL/TEST transforms: ToTensor + Normalize
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/scripts/train_experiment.py", line 101, in <module>
+    main()
+    ~~~~^^
+  File "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/scripts/train_experiment.py", line 71, in main
+    scaler = torch.mps.amp.GradScaler(enabled=args.amp)
+             ^^^^^^^^^^^^^
+AttributeError: module 'torch.mps' has no attribute 'amp'

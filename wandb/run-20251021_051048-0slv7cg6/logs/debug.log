@@ -1,0 +1,26 @@
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_setup.py:_flush():81] Configure stats pid to 78164
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_setup.py:_flush():81] Loading settings from /Users/santhoshtanay/.config/wandb/settings
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_setup.py:_flush():81] Loading settings from /Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/wandb/settings
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-21 05:10:48,544 INFO    MainThread:78164 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/wandb/run-20251021_051048-0slv7cg6/logs/debug.log
+2025-10-21 05:10:48,545 INFO    MainThread:78164 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/wandb/run-20251021_051048-0slv7cg6/logs/debug-internal.log
+2025-10-21 05:10:48,545 INFO    MainThread:78164 [wandb_init.py:init():832] calling init triggers
+2025-10-21 05:10:48,545 INFO    MainThread:78164 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'data_dir': './data', 'out_dir': './runs/opt_nadam_fast', 'activation': 'relu', 'dropout': 0.3, 'epochs': 40, 'batch_size': 512, 'optimizer': 'nadam', 'lr': 0.001, 'momentum': 0.9, 'weight_decay': 0.0005, 'label_smoothing': 0.0, 'amp': True, 'seed': 42, 'num_workers': 8, 'aug_hflip': True, 'aug_crop': True, 'aug_cutout': True, 'aug_jitter': True, 'wandb': True, 'wandb_project': 'vgg6-cifar10-assignment', 'wandb_group': 'q2-sweeps', 'run_name': None, '_wandb': {}}
+2025-10-21 05:10:48,545 INFO    MainThread:78164 [wandb_init.py:init():880] starting backend
+2025-10-21 05:10:48,760 INFO    MainThread:78164 [wandb_init.py:init():883] sending inform_init request
+2025-10-21 05:10:48,784 INFO    MainThread:78164 [wandb_init.py:init():891] backend started and connected
+2025-10-21 05:10:48,785 INFO    MainThread:78164 [wandb_init.py:init():961] updated telemetry
+2025-10-21 05:10:48,795 INFO    MainThread:78164 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-21 05:10:49,583 INFO    MainThread:78164 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-21 05:10:49,615 INFO    MainThread:78164 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-21 05:10:49,616 INFO    MainThread:78164 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-21 05:10:49,616 INFO    MainThread:78164 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-21 05:10:49,616 INFO    MainThread:78164 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-21 05:10:49,617 INFO    MainThread:78164 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-21 05:58:18,395 INFO    MainThread:78164 [wandb_run.py:_finish():2275] finishing run tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/0slv7cg6
+2025-10-21 05:58:18,396 INFO    MainThread:78164 [wandb_run.py:_atexit_cleanup():2474] got exitcode: 0
+2025-10-21 05:58:18,396 INFO    MainThread:78164 [wandb_run.py:_restore():2456] restore
+2025-10-21 05:58:18,396 INFO    MainThread:78164 [wandb_run.py:_restore():2462] restore done
+2025-10-21 05:58:20,936 INFO    MainThread:78164 [wandb_run.py:_footer_sync_info():3872] logging synced files

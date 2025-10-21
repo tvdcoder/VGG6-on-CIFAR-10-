@@ -1,0 +1,18 @@
+CIFAR-10 normalization: mean=(0.4914, 0.4822, 0.4465), std=(0.247, 0.2435, 0.2616)
+Augmentations used for TRAIN: RandomCrop(32, padding=4), RandomHorizontalFlip(p=0.5), ColorJitter(0.2/0.2/0.2/0.02), RandomErasingSquare(~2%)
+VAL/TEST transforms: ToTensor + Normalize
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/scripts/train_experiment.py:75: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=args.amp)
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/amp/grad_scaler.py:136: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn(
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/utils/data/dataloader.py:684: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/engine/trainer.py:14: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/amp/autocast_mode.py:266: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling
+  warnings.warn(
+[Epoch 001] lr=0.02507 train_loss=1.5695 acc=0.4215 val_loss=1.3310 acc=0.5398
+[Epoch 002] lr=0.02514 train_loss=1.1210 acc=0.6051 val_loss=0.9826 acc=0.6536
+[Epoch 003] lr=0.02521 train_loss=0.9198 acc=0.6796 val_loss=0.9211 acc=0.6738
+[Epoch 004] lr=0.02528 train_loss=0.8097 acc=0.7193 val_loss=0.7863 acc=0.7138
+[Epoch 005] lr=0.02536 train_loss=0.7322 acc=0.7471 val_loss=0.6845 acc=0.7606

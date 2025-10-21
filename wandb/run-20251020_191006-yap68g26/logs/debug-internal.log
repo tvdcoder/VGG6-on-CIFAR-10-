@@ -1,0 +1,14 @@
+{"time":"2025-10-20T19:10:06.901686+05:30","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-20T19:10:07.403124+05:30","level":"INFO","msg":"stream: created new stream","id":"yap68g26"}
+{"time":"2025-10-20T19:10:07.403156+05:30","level":"INFO","msg":"handler: started","stream_id":"yap68g26"}
+{"time":"2025-10-20T19:10:07.403289+05:30","level":"INFO","msg":"stream: started","id":"yap68g26"}
+{"time":"2025-10-20T19:10:07.403304+05:30","level":"INFO","msg":"sender: started","stream_id":"yap68g26"}
+{"time":"2025-10-20T19:10:07.403306+05:30","level":"INFO","msg":"writer: started","stream_id":"yap68g26"}
+{"time":"2025-10-20T19:14:19.066618+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/yap68g26/file_stream\": EOF"}
+{"time":"2025-10-20T19:14:31.969239+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/yap68g26/file_stream\": unexpected EOF"}
+{"time":"2025-10-20T19:57:29.126819+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.003855709}],"total_operations":1}}
+{"time":"2025-10-20T19:57:30.665759+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-20T19:57:31.4748+05:30","level":"INFO","msg":"stream: closing","id":"yap68g26"}
+{"time":"2025-10-20T19:57:31.47484+05:30","level":"INFO","msg":"handler: closed","stream_id":"yap68g26"}
+{"time":"2025-10-20T19:57:31.474946+05:30","level":"INFO","msg":"sender: closed","stream_id":"yap68g26"}
+{"time":"2025-10-20T19:57:31.474958+05:30","level":"INFO","msg":"stream: closed","id":"yap68g26"}

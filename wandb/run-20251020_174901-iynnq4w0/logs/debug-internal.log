@@ -1,0 +1,14 @@
+{"time":"2025-10-20T17:49:01.791848+05:30","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-20T17:49:02.234337+05:30","level":"INFO","msg":"stream: created new stream","id":"iynnq4w0"}
+{"time":"2025-10-20T17:49:02.234408+05:30","level":"INFO","msg":"handler: started","stream_id":"iynnq4w0"}
+{"time":"2025-10-20T17:49:02.234518+05:30","level":"INFO","msg":"stream: started","id":"iynnq4w0"}
+{"time":"2025-10-20T17:49:02.23452+05:30","level":"INFO","msg":"writer: started","stream_id":"iynnq4w0"}
+{"time":"2025-10-20T17:49:02.234527+05:30","level":"INFO","msg":"sender: started","stream_id":"iynnq4w0"}
+{"time":"2025-10-20T17:51:46.223965+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/iynnq4w0/file_stream\": dial tcp 35.186.228.49:443: connect: operation timed out"}
+{"time":"2025-10-20T17:51:50.891437+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 192.168.68.108:56797->35.186.228.49:443: read: operation timed out"}
+{"time":"2025-10-20T17:52:01.82328+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/iynnq4w0/file_stream\": dial tcp 35.186.228.49:443: connect: operation timed out"}
+{"time":"2025-10-20T17:52:23.03703+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-10-20T17:52:27.862512+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2025-10-20T17:52:37.622658+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": dial tcp: lookup api.wandb.ai: no such host"}
+{"time":"2025-10-20T17:52:43.425196+05:30","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":78}
+{"time":"2025-10-20T17:52:43.426057+05:30","level":"INFO","msg":"stream: closing","id":"iynnq4w0"}

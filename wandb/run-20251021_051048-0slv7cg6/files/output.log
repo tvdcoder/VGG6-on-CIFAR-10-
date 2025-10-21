@@ -1,0 +1,22 @@
+CIFAR-10 normalization: mean=(0.4914, 0.4822, 0.4465), std=(0.247, 0.2435, 0.2616)
+Augmentations used for TRAIN: RandomCrop(32, padding=4), RandomHorizontalFlip(p=0.5), ColorJitter(0.2/0.2/0.2/0.02), RandomErasingSquare(~2%)
+VAL/TEST transforms: ToTensor + Normalize
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/scripts/train_experiment.py:75: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=args.amp)
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/amp/grad_scaler.py:136: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn(
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/utils/data/dataloader.py:684: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/vgg6_cifar/engine/trainer.py:14: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/lib/python3.13/site-packages/torch/amp/autocast_mode.py:266: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling
+  warnings.warn(
+[Epoch 005] lr=0.00025 train_loss=0.8864 acc=0.6868 val_loss=0.8551 acc=0.6906
+[Epoch 010] lr=0.00025 train_loss=0.6601 acc=0.7681 val_loss=0.7245 acc=0.7510
+[Epoch 015] lr=0.00025 train_loss=0.5391 acc=0.8127 val_loss=0.7629 acc=0.7388
+[Epoch 020] lr=0.00025 train_loss=0.4662 acc=0.8395 val_loss=0.5680 acc=0.7958
+[Epoch 025] lr=0.00025 train_loss=0.4070 acc=0.8583 val_loss=0.4727 acc=0.8340
+[Epoch 030] lr=0.00025 train_loss=0.3575 acc=0.8738 val_loss=0.4780 acc=0.8412
+[Epoch 035] lr=0.00025 train_loss=0.3231 acc=0.8865 val_loss=0.5078 acc=0.8208
+[Epoch 040] lr=0.00025 train_loss=0.2876 acc=0.9008 val_loss=0.5199 acc=0.8228
+FINAL TEST: loss=0.4376  top1_acc=0.8507

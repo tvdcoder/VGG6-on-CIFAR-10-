@@ -1,0 +1,61 @@
+{
+  "os":  "macOS-26.0.1-arm64-arm-64bit-Mach-O",
+  "python":  "CPython 3.13.7",
+  "startedAt":  "2025-10-20T23:40:48.541215Z",
+  "args":  [
+    "--data_dir",
+    "./data",
+    "--out_dir",
+    "./runs/opt_nadam_fast",
+    "--activation",
+    "relu",
+    "--optimizer",
+    "nadam",
+    "--lr",
+    "0.001",
+    "--batch_size",
+    "512",
+    "--epochs",
+    "40",
+    "--aug_hflip",
+    "--aug_crop",
+    "--aug_cutout",
+    "--aug_jitter",
+    "--amp",
+    "--seed",
+    "42",
+    "--wandb",
+    "--num_workers",
+    "8"
+  ],
+  "program":  "-m vgg6_cifar.scripts.train_experiment",
+  "git":  {
+    "remote":  "https://github.com/tvdcoder/VGG6-on-CIFAR-10-.git",
+    "commit":  "1fccc2653093a0290b1433373cab47add21e8672"
+  },
+  "email":  "tanaysunnam2017@gmail.com",
+  "root":  "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle",
+  "host":  "MacBook-Pro.local",
+  "executable":  "/Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/bin/python",
+  "cpu_count":  12,
+  "cpu_count_logical":  12,
+  "disk":  {
+    "/":  {
+      "total":  "494384795648",
+      "used":  "217202442240"
+    }
+  },
+  "memory":  {
+    "total":  "25769803776"
+  },
+  "apple":  {
+    "name":  "Apple M4 Pro",
+    "ecpuCores":  4,
+    "pcpuCores":  8,
+    "gpuCores":  16,
+    "memoryGb":  24,
+    "swapTotalBytes":  "9663676416",
+    "ramTotalBytes":  "25769803776"
+  },
+  "writerId":  "f0lxq8af94ps7dimm33iywiyww1vj5dl"
+}

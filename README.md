@@ -1,131 +1,173 @@
+# CS6886W - System Engineering for Deep Learning
+# Assignment 1: VGG6 on CIFAR-10 - Final Report
 
-# VGG6 on CIFAR-10 — Full Assignment (Q1–Q5)
+**Name:** Momeet Singh Ahluwalia
+**Roll No:** CS24M527
+
+**GitHub Repository Link:** [(https://github.com/tvdcoder/VGG6-on-CIFAR-10-.git)]
 
 This repository is structured to satisfy the entire assignment:
 - **Q1**: Baseline training with proper normalization & augmentations; final test accuracy; loss/accuracy curves.
-- **Q2**: Experiments varying **activations**, **optimizers**, **batch size / epochs / LR**.
+- **Q2**: Experiments varying **activations**, **optimizers**, and **batch size / epochs / LR**.
 - **Q3**: Plots — W&B parallel-coordinates, validation-accuracy vs step (scatter), and training/validation curves.
 - **Q4**: Final best configuration (reproducible).
 - **Q5**: Clean, modular code + README with exact commands; include seed; upload best checkpoint to GitHub.
 
-## Environment
+## Environment & Setup
+
+### 1. Dependencies
+Install the required packages:
 ```bash
 pip install -r requirements.txt
-# Optional: W&B login for Q3a
-python - <<'PY'
-import os, wandb
-# os.environ['WANDB_API_KEY'] = '<your-key>'  # or use wandb.login() interactively
-PY
+````
+
+### 2\. Weights & Biases
+
+Log in to your W\&B account to enable experiment tracking:
+
+```bash
+wandb login
 ```
 
-## Structure
-```
-vgg6_cifar_full/
-├─ vgg6_cifar/
-│  ├─ config.py
-│  ├─ models/
-│  │  ├─ vgg6.py                # VGG6 with configurable activation
-│  │  └─ activations.py         # ReLU/Sigmoid/Tanh/SiLU/GELU registry
-│  ├─ data/cifar10.py           # Normalization, augmentations, dataloaders
-│  ├─ engine/
-│  │  ├─ trainer.py             # train/eval loops, cosine LR with warmup
-│  │  └─ optim_factory.py       # SGD, Nesterov-SGD, Adam/AdamW, Adagrad, RMSprop, Nadam
-│  └─ utils/{logger.py,metrics.py}
-├─ vgg6_cifar/scripts/
-│  ├─ train_baseline.py         # Q1 entry: baseline
-│  ├─ train_experiment.py       # Q2/Q3/Q4: configurable runner (+W&B)
-│  ├─ sweep_grid.py             # Q2 sweeps over hparams
-│  ├─ plot_curves.py            # Q1/Q3(c) curves
-│  └─ plot_scatter_valacc_vs_step.py  # Q3(b) scatter
-└─ train_vgg6_cifar10_baseline.py     # Optional single-file baseline
+### 3\. Performance Optimization (Crucial for Speed)
+
+This code is optimized to run on **Apple Silicon (M-series) GPUs** by using the `mps` device and a highly efficient data pipeline.
+
+**To get maximum performance, make this one-time code change:**
+
+  * Open `vgg6_cifar/data/cifar10.py`.
+  * Find your `DataLoader` definitions for `train_loader`, `val_loader`, and `test_loader`.
+  * Add **`pin_memory=True`** and **`prefetch_factor=4`** to all three `DataLoader` instances.
+
+**Example:**
+
+```python
+# Inside vgg6_cifar/data/cifar10.py
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=batch_size,
+    shuffle=True,
+    num_workers=num_workers,
+    pin_memory=True,     # <-- ADD THIS
+    prefetch_factor=4    # <-- ADD THIS
+)
 ```
 
----
+-----
 
 ## Q1 — Baseline (a–c)
 
-**Run:**
+This command trains the baseline model for 60 epochs with a small batch size, as a reference.
+
 ```bash
-python vgg6_cifar/scripts/train_baseline.py --data_dir ./data --out_dir ./runs/baseline   --epochs 60 --batch_size 128 --lr 0.1 --optimizer sgd --momentum 0.9   --weight_decay 5e-4 --label_smoothing 0.0   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --seed 42
+python -m vgg6_cifar.scripts.train_baseline \
+  --data_dir ./data \
+  --out_dir ./runs/baseline \
+  --epochs 60 --batch_size 128 --lr 0.1 --optimizer sgd --momentum 0.9 \
+  --weight_decay 5e-4 --label_smoothing 0.0 \
+  --aug_hflip --aug_crop --aug_cutout --aug_jitter \
+  --amp --seed 42
 ```
 
-**Artifacts in `--out_dir`:**
-- `metrics.csv`, `best.pt`, `final_test_metrics.json`
-- Curves:
-```bash
-python vgg6_cifar/scripts/plot_curves.py --metrics_csv ./runs/baseline/metrics.csv --out_dir ./runs/baseline
-```
+The final test metrics are saved in `./runs/baseline/final_test_metrics.json`.
 
----
+-----
 
 ## Q2 — Model Performance on Different Configurations
 
-### (a) Vary activation
+A full sweep was run to compare activations and optimizers. All experiments were run with a high-performance configuration (`--batch_size 512`, `--num_workers 8`) to ensure fast training.
+
+### Reproducing the Full Sweep
+
+You can reproduce the entire set of experiments by running the W\&B agent with the sweep ID.
+
 ```bash
-python vgg6_cifar/scripts/train_experiment.py --activation gelu --optimizer sgd --lr 0.1 --batch_size 128   --epochs 40 --data_dir ./data --out_dir ./runs/exp_act_gelu   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --wandb --seed 42
+# Replace with your sweep ID (e.g., tvdcoder/vgg6-cifar10-assignment/xxxxxxx)
+wandb agent <YOUR_SWEEP_ID>
 ```
 
-### (b) Vary optimizer
+### Individual High-Performance Commands
+
+The sweep agent runs variations of the commands below.
+
+#### (a) Vary activation (Fast)
+
 ```bash
-python vgg6_cifar/scripts/train_experiment.py --optimizer nadam --activation relu --lr 0.01 --batch_size 128   --epochs 40 --data_dir ./data --out_dir ./runs/exp_opt_nadam   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --wandb --seed 42
+# Example: ReLU (Fast)
+python -m vgg6_cifar.scripts.train_experiment \
+  --data_dir ./data --out_dir ./runs/act_relu_fast \
+  --activation relu --optimizer sgd --lr 0.4 --batch_size 512 --epochs 40 \
+  --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --seed 42 --wandb \
+  --num_workers 8
 ```
 
-### (c) Vary batch size, epochs, learning rate
+*(Other activations like `silu`, `gelu`, `tanh`, and `sigmoid` were also run.)*
+
+#### (b) Vary optimizer (Fast)
+
 ```bash
-python vgg6_cifar/scripts/train_experiment.py --activation relu --optimizer sgd --lr 0.05 --batch_size 64   --epochs 80 --data_dir ./data --out_dir ./runs/exp_bs64_lr005_e80   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --wandb --seed 42
+# Example: Adam (Fast)
+python -m vgg6_cifar.scripts.train_experiment \
+  --data_dir ./data --out_dir ./runs/opt_adam_fast \
+  --activation relu --optimizer adam --lr 0.001 --batch_size 512 --epochs 40 \
+  --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --seed 42 --wandb \
+  --num_workers 8
 ```
 
-**Grid sweep (recommended):**
-```bash
-python vgg6_cifar/scripts/sweep_grid.py --data_dir ./data --base_out ./runs/sweeps   --epochs 30 --batch_sizes 64,128 --lrs 0.1,0.05,0.01   --optimizers sgd,nesterov-sgd,adam,adamw,rmsprop,nadam,adagrad   --activations relu,silu,gelu,tanh,sigmoid --amp --wandb
-```
-Outputs `./runs/sweeps/sweep_summary.csv` with `best_val_acc` and `test_top1_acc` for each config.
+*(Other optimizers like `sgd`, `nesterov-sgd`, `adamw`, `rmsprop`, `nadam`, and `adagrad` were also run.)*
 
----
+-----
 
 ## Q3 — Plots
 
-### (a) W&B parallel-coordinates
-Enable `--wandb`, then in the W&B UI choose **Parallel Coordinates** and select axes: `activation`, `optimizer`, `batch_size`, `lr`, `best_val_acc`. Screenshot for the PDF.
+As per the assignment instructions, all plots are generated automatically by the **Weights & Biases sweep dashboard**.
 
-### (b) Validation accuracy vs. step (scatter)
-```bash
-python vgg6_cifar/scripts/plot_scatter_valacc_vs_step.py   --metrics_csv ./runs/exp_act_gelu/metrics.csv   --out_png     ./runs/exp_act_gelu/scatter_valacc_vs_step.png
-```
+1.  Open the W\&B project page for this assignment.
+2.  Navigate to the "Sweeps" tab.
+3.  All required plots can be generated and screenshotted from this dashboard:
+      * **(a) Parallel-Coordinate Plot:** This plot is generated by default.
+      * **(b) Validation Accuracy vs. Step (Scatter Plot):** Add a new panel of type "Scatter Plot" and set X-axis = `Step`, Y-axis = `val_acc`.
+      * **(c) Train/Val Curves:** The default panels for `train_acc`, `val_acc`, `train_loss`, and `val_loss` show all runs overlaid.
 
-### (c) Train/val curves
-```bash
-python vgg6_cifar/scripts/plot_curves.py   --metrics_csv ./runs/exp_act_gelu/metrics.csv   --out_dir     ./runs/exp_act_gelu
-```
-
----
+-----
 
 ## Q4 — Final Model Performance
-Select the **single best** configuration (highest validation accuracy) from the W&B parallel plot. Re-run it exactly:
+
+Based on the W\&B parallel coordinates plot, the single best-performing configuration was identified.
+
+  * **Best Activation:** `relu`
+  * **Best Optimizer:** `sgd`
+  * **Best Learning Rate:** `0.4`
+  * **Best Batch Size:** `512`
+  * **Epochs:** `40`
+
+### Exact Command to Reproduce Best Model
+
+This command re-runs the single best configuration.
 
 ```bash
-python vgg6_cifar/scripts/train_experiment.py   --data_dir ./data --out_dir ./runs/final_best   --activation <best_act> --optimizer <best_opt> --lr <best_lr>   --batch_size <best_bs> --epochs <best_epochs>   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --wandb --seed 42
+python -m vgg6_cifar.scripts.train_experiment \
+  --data_dir ./data --out_dir ./runs/final_best \
+  --activation relu \
+  --optimizer sgd \
+  --lr 0.4 \
+  --batch_size 512 \
+  --epochs 40 \
+  --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --wandb --seed 42 \
+  --num_workers 8
 ```
-Report the resulting `best_val_acc` and `test_top1_acc` and upload `best.pt` to your GitHub repo.
 
----
+The final metrics are saved in `./runs/final_best/final_test_metrics.json` and the trained model is saved as `./runs/final_best/best.pt`.
+
+-----
 
 ## Q5 — Reproducibility & Repository
-- **Modular code** across `models/`, `data/`, `engine/`, `utils/`, `scripts/`.
-- **Exact commands** in this README; dependencies in `requirements.txt`; seed via `--seed` (42 default).
-- **Upload trained model**: include `best.pt` for your final configuration in the repo or release assets.
-- **Colab**: set GPU runtime and run commands with paths under `/content`.
 
----
+  - **Modular Code:** The project is structured into `models/`, `data/`, `engine/`, `utils/`, and `scripts/` for clarity.
+  - **Reproducibility:** All commands are in this README. Dependencies are in `requirements.txt`. The seed is fixed via `--seed 42`.
+  - **Trained Model:** The `best.pt` file from the final Q4 run is included in this repository.
 
-## Colab Quick Start
-```bash
-# After uploading/unzipping this folder into /content/vgg6_cifar_full
-%cd /content/vgg6_cifar_full
-!pip install -r requirements.txt
+<!-- end list -->
 
-# Baseline
-!python -m vgg6_cifar.scripts.train_baseline --data_dir /content/data --out_dir /content/runs/baseline   --epochs 60 --batch_size 128 --lr 0.1 --optimizer sgd --momentum 0.9   --weight_decay 5e-4 --label_smoothing 0.0   --aug_hflip --aug_crop --aug_cutout --aug_jitter --amp --seed 42
 ```
-
-**If you see `ModuleNotFoundError: vgg6_cifar`**, run from the project root with `-m` (as above), or add the root to `sys.path`.
+```

@@ -1,0 +1,26 @@
+{"time":"2025-10-20T21:42:04.66756+05:30","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-20T21:42:06.079382+05:30","level":"INFO","msg":"stream: created new stream","id":"sqjy50oh"}
+{"time":"2025-10-20T21:42:06.079428+05:30","level":"INFO","msg":"handler: started","stream_id":"sqjy50oh"}
+{"time":"2025-10-20T21:42:06.079542+05:30","level":"INFO","msg":"stream: started","id":"sqjy50oh"}
+{"time":"2025-10-20T21:42:06.079544+05:30","level":"INFO","msg":"writer: started","stream_id":"sqjy50oh"}
+{"time":"2025-10-20T21:42:06.079549+05:30","level":"INFO","msg":"sender: started","stream_id":"sqjy50oh"}
+{"time":"2025-10-20T21:59:22.239085+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T21:59:35.526037+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": unexpected EOF"}
+{"time":"2025-10-20T21:59:50.185643+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:04:33.413358+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:04:48.273311+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:05:05.909113+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:05:08.846598+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-10-20T22:05:27.107324+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:05:41.291719+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-10-20T22:05:57.213657+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:06:03.256391+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": read tcp 172.20.10.2:61041->35.186.228.49:443: read: operation timed out"}
+{"time":"2025-10-20T22:06:24.378145+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": EOF"}
+{"time":"2025-10-20T22:06:45.86103+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/tanaysunnam2017-qualcomm/vgg6-cifar10-assignment/sqjy50oh/file_stream\": EOF"}
+{"time":"2025-10-20T22:06:55.807445+05:30","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": EOF"}
+{"time":"2025-10-20T22:29:32.648101+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.003802875}],"total_operations":1}}
+{"time":"2025-10-20T22:29:34.035143+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-20T22:29:34.479127+05:30","level":"INFO","msg":"stream: closing","id":"sqjy50oh"}
+{"time":"2025-10-20T22:29:34.479248+05:30","level":"INFO","msg":"handler: closed","stream_id":"sqjy50oh"}
+{"time":"2025-10-20T22:29:34.479612+05:30","level":"INFO","msg":"sender: closed","stream_id":"sqjy50oh"}
+{"time":"2025-10-20T22:29:34.479631+05:30","level":"INFO","msg":"stream: closed","id":"sqjy50oh"}

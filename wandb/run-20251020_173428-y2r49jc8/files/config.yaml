@@ -1,0 +1,99 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            jwb0nd3al5vu18sgmds7mjlyoopuoezd:
+                args:
+                    - --data_dir
+                    - ./data
+                    - --out_dir
+                    - ./runs/act_silu
+                    - --activation
+                    - silu
+                    - --optimizer
+                    - sgd
+                    - --lr
+                    - "0.1"
+                    - --batch_size
+                    - "128"
+                    - --epochs
+                    - "40"
+                    - --aug_hflip
+                    - --aug_crop
+                    - --aug_cutout
+                    - --aug_jitter
+                    - --amp
+                    - --seed
+                    - "42"
+                    - --wandb
+                email: tanaysunnam2017@gmail.com
+                executable: /Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle/.venv/bin/python
+                git:
+                    commit: 1fccc2653093a0290b1433373cab47add21e8672
+                    remote: https://github.com/tvdcoder/VGG6-on-CIFAR-10-.git
+                host: MacBook-Pro.local
+                os: macOS-26.0.1-arm64-arm-64bit-Mach-O
+                program: -m vgg6_cifar.scripts.train_experiment
+                python: CPython 3.13.7
+                root: /Users/santhoshtanay/Desktop/momeet/vgg6_cifar_full_bundle
+                startedAt: "2025-10-20T12:04:28.628008Z"
+                writerId: jwb0nd3al5vu18sgmds7mjlyoopuoezd
+        m: []
+        python_version: 3.13.7
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 16
+            "4": 3.13.7
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": darwin-arm64
+activation:
+    value: silu
+amp:
+    value: true
+aug_crop:
+    value: true
+aug_cutout:
+    value: true
+aug_hflip:
+    value: true
+aug_jitter:
+    value: true
+batch_size:
+    value: 128
+data_dir:
+    value: ./data
+dropout:
+    value: 0.3
+epochs:
+    value: 40
+label_smoothing:
+    value: 0
+lr:
+    value: 0.1
+momentum:
+    value: 0.9
+num_workers:
+    value: 4
+optimizer:
+    value: sgd
+out_dir:
+    value: ./runs/act_silu
+run_name:
+    value: null
+seed:
+    value: 42
+wandb:
+    value: true
+wandb_group:
+    value: q2-sweeps
+wandb_project:
+    value: vgg6-cifar10-assignment
+weight_decay:
+    value: 0.0005

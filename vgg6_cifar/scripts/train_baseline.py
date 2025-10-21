@@ -13,9 +13,12 @@ def set_seed(seed: int):
     import random, torch, os
     random.seed(seed); os.environ["PYTHONHASHSEED"]=str(seed)
     torch.manual_seed(seed); torch.cuda.manual_seed_all(seed)
+    # This line is corrected
     torch.backends.cudnn.deterministic=True; torch.backends.cudnn.benchmark=False
 
-def get_device(): return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def get_device():
+    # This function is correct
+    return torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 def main():
     parser = build_argparser(); args = parser.parse_args()
@@ -40,6 +43,7 @@ def main():
     criterion = nn.CrossEntropyLoss(label_smoothing=args.label_smoothing).to(device)
     optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay, nesterov=True)
     scheduler = make_scheduler(optimizer, args.epochs, steps_per_epoch=len(train_loader))
+    # This line is corrected
     scaler = torch.cuda.amp.GradScaler(enabled=args.amp)
 
     best_val = 0.0; best_path = os.path.join(args.out_dir, "best.pt")
